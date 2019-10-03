@@ -6,24 +6,14 @@ namespace NumberGuesser
     {
         static void Main(string[] args)
         {
-            //Set app vars
-            string appName = "Number Guesser";
-            string appVersion = "1.0.0";
-            string appAuther = "Eric Jurotich";
-            //change text color
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuther);
-            //Reset Text color 
-            Console.ResetColor();
+            GetAppInfo();
 
-            Console.WriteLine("What is your name?");
-            string usrName = Console.ReadLine();
 
-            Console.WriteLine("Hello {0}, lets play a game", usrName);
-
+            Greeting();
 
             while (true)
             {
+                
 
                 //create a random object
                 Random random = new Random();
@@ -46,12 +36,7 @@ namespace NumberGuesser
                     // test that this is a num
                     if (!int.TryParse(input, out guess))
                     {
-                        //change text color
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        //wrong 
-                        Console.WriteLine("You did not input a number, please enter a number 1-10");
-                        //Reset Text color 
-                        Console.ResetColor();
+                        PrintColor(ConsoleColor.Red, "You did not input a number, please enter a number 1-10");
 
                         continue;
 
@@ -61,25 +46,18 @@ namespace NumberGuesser
 
                     if (guess != correctNumber)
                     {
-                        //change text color
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        //wrong 
-                        Console.WriteLine("Wrong number please try again!");
-                        //Reset Text color 
-                        Console.ResetColor();
+
+                        PrintColor(ConsoleColor.Red, "Wrong number please try again!");
 
                     }
 
 
 
                 }
-                //change text color
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                //out put success
-                Console.WriteLine("You guessed correctly!!!!!");
-                //Reset Text color 
-                Console.ResetColor();
 
+                PrintColor(ConsoleColor.Magenta, "You guessed correctly!!!!!");
+                
+                
                 // ask to play again
                 Console.WriteLine("Play again ? [Y or N]");
 
@@ -95,6 +73,41 @@ namespace NumberGuesser
                     return;
                 }
             }
+        }
+
+        static void GetAppInfo() {
+
+            //Set app vars
+            string appName = "Number Guesser";
+            string appVersion = "1.0.0";
+            string appAuther = "Eric Jurotich";
+            //change text color
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuther);
+            //Reset Text color 
+            Console.ResetColor();
+
+        }
+
+        static void Greeting() {
+
+            Console.WriteLine("What is your name?");
+            string usrName = Console.ReadLine();
+
+            Console.WriteLine("Hello {0}, lets play a game", usrName);
+
+        }
+
+        static void PrintColor(ConsoleColor color, string message) {
+
+            //change text color
+            Console.ForegroundColor = color;
+            //wrong 
+            Console.WriteLine(message);
+            //Reset Text color 
+            Console.ResetColor();
+
+
         }
     }
 }
